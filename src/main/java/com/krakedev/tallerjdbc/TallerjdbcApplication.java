@@ -1,7 +1,7 @@
 package com.krakedev.tallerjdbc;
 
-import com.krakdev.jdbc.AdminVehiculo;
 import com.krakdev.jdbc.Conexion;
+import com.krakdev.jdbc.SelectVehiculo;
 
 public class TallerjdbcApplication {
 
@@ -9,10 +9,10 @@ public class TallerjdbcApplication {
 
         Conexion.conectar();
 
-        AdminVehiculo admin =
-                new AdminVehiculo();
+        SelectVehiculo select =
+                new SelectVehiculo();
 
-        admin.eliminarVehiculo("ABC123");
+        select.listar();
 
         Conexion.cerrarConexion();
 
