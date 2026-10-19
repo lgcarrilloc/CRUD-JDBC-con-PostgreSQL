@@ -7,6 +7,3 @@ CREATE TABLE vehiculos(
     color VARCHAR(30),
     disponible BOOLEAN NOT NULL
 );
-
--- select --
-SELECT * FROM vehiculos;
