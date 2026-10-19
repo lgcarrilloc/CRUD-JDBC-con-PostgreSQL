@@ -20,10 +20,12 @@ public class InsertVehiculo {
                 + "(placa, marca, modelo, anio, precio, color, disponible) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        PreparedStatement ps = null;
+
         try {
 
-            PreparedStatement ps =
-                    Conexion.getConexion().prepareStatement(sql);
+            ps = Conexion.getConexion()
+                    .prepareStatement(sql);
 
             ps.setString(1, vehiculo.getPlaca());
             ps.setString(2, vehiculo.getMarca());
@@ -33,15 +35,30 @@ public class InsertVehiculo {
             ps.setString(6, vehiculo.getColor());
             ps.setBoolean(7, vehiculo.isDisponible());
 
-            int filas = ps.executeUpdate();
+            ps.executeUpdate();
 
-            logger.info("Filas insertadas: {}", filas);
+            System.out.println("Vehículo insertado");
+            logger.info("Vehículo insertado");
 
         } catch (SQLException e) {
 
-            logger.error("Error al insertar vehículo", e);
+            System.out.println("Error de conexión");
+            logger.error("Error de conexión", e);
 
+        } finally {
+
+            try {
+
+                if (ps != null) {
+                    ps.close();
+                }
+
+            } catch (SQLException e) {
+
+                logger.error(
+                        "Error al cerrar PreparedStatement",
+                        e);
+            }
         }
     }
 }
-

@@ -14,30 +14,48 @@ public class DeleteVehiculo {
     public void eliminar(String placa) {
 
         String sql =
-                "DELETE FROM vehiculos "
-                + "WHERE placa=?";
+                "DELETE FROM vehiculos WHERE placa=?";
+
+        PreparedStatement ps = null;
 
         try {
 
-            PreparedStatement ps =
-                    Conexion.getConexion()
-                            .prepareStatement(sql);
+            ps = Conexion.getConexion()
+                    .prepareStatement(sql);
 
             ps.setString(1, placa);
 
-            int filas =
-                    ps.executeUpdate();
+            int filas = ps.executeUpdate();
 
-            logger.info(
-                    "Filas eliminadas: {}",
-                    filas);
+            if (filas > 0) {
+
+                System.out.println("Vehículo eliminado");
+                logger.info("Vehículo eliminado");
+
+            } else {
+
+                System.out.println("Vehículo no encontrado");
+            }
 
         } catch (SQLException e) {
 
-            logger.error(
-                    "Error al eliminar",
-                    e);
+            System.out.println("Error de conexión");
+            logger.error("Error de conexión", e);
 
+        } finally {
+
+            try {
+
+                if (ps != null) {
+                    ps.close();
+                }
+
+            } catch (SQLException e) {
+
+                logger.error(
+                        "Error al cerrar PreparedStatement",
+                        e);
+            }
         }
     }
 }

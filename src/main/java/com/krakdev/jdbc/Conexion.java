@@ -25,14 +25,18 @@ public class Conexion {
 
             String password = "luis2809";
 
-            conexion = DriverManager.getConnection( url, usuario, password);
+            conexion = DriverManager.getConnection(
+                    url,
+                    usuario,
+                    password);
 
-            logger.info("Conexión exitosa");
+            System.out.println("Conexión realizada");
+            logger.info("Conexión realizada");
 
         } catch (SQLException e) {
 
-            logger.error("Error al conectar", e);
-
+            System.out.println("Error de conexión");
+            logger.error("Error de conexión", e);
         }
     }
 
@@ -48,15 +52,13 @@ public class Conexion {
 
                 conexion.close();
 
+                System.out.println("Conexión cerrada");
                 logger.info("Conexión cerrada");
-
             }
 
         } catch (SQLException e) {
 
-            logger.error("Error al cerrar conexión", e);
-
+            logger.error("Error de conexión", e);
         }
-
     }
 }

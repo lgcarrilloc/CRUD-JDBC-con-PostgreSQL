@@ -7,14 +7,28 @@ public class TallerjdbcApplication {
 
     public static void main(String[] args) {
 
-        Conexion.conectar();
+        try {
 
-        SelectVehiculo select =
-                new SelectVehiculo();
+            Conexion.conectar();
 
-        select.listar();
+            SelectVehiculo select =
+                    new SelectVehiculo();
 
-        Conexion.cerrarConexion();
+            select.listar();
 
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Error general: "
+                    + e.getMessage());
+
+        } finally {
+
+            Conexion.cerrarConexion();
+
+            System.out.println(
+                    "Proceso finalizado");
+
+        }
     }
 }
