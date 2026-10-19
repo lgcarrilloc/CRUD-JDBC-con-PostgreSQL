@@ -20,8 +20,7 @@ public class DeleteVehiculo {
 
         try {
 
-            ps = Conexion.getConexion()
-                    .prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
 
             ps.setString(1, placa);
 
@@ -52,9 +51,7 @@ public class DeleteVehiculo {
 
             } catch (SQLException e) {
 
-                logger.error(
-                        "Error al cerrar PreparedStatement",
-                        e);
+                logger.error("Error al cerrar PreparedStatement", e);
             }
         }
     }

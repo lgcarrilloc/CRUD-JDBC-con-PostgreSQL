@@ -10,3 +10,7 @@ CREATE TABLE vehiculos(
 
 -- select --
 SELECT * FROM vehiculos;
+
+-- modificar tabla --
+ALTER TABLE vehiculos
+ADD kilometraje INT;

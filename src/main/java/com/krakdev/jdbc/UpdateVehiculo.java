@@ -17,16 +17,14 @@ public class UpdateVehiculo {
 
         String sql =
                 "UPDATE vehiculos "
-                + "SET marca=?, modelo=?, anio=?, "
-                + "precio=?, color=?, disponible=? "
-                + "WHERE placa=?";
+                        + "SET marca=?, modelo=?, anio=?, precio=?, color=?, disponible=?, kilometraje=? "
+                        + "WHERE placa=?";
 
         PreparedStatement ps = null;
 
         try {
 
-            ps = Conexion.getConexion()
-                    .prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
 
             ps.setString(1, vehiculo.getMarca());
             ps.setString(2, vehiculo.getModelo());
@@ -34,7 +32,8 @@ public class UpdateVehiculo {
             ps.setDouble(4, vehiculo.getPrecio());
             ps.setString(5, vehiculo.getColor());
             ps.setBoolean(6, vehiculo.isDisponible());
-            ps.setString(7, vehiculo.getPlaca());
+            ps.setInt(7, vehiculo.getKilometraje());
+            ps.setString(8, vehiculo.getPlaca());
 
             int filas = ps.executeUpdate();
 
@@ -63,9 +62,7 @@ public class UpdateVehiculo {
 
             } catch (SQLException e) {
 
-                logger.error(
-                        "Error al cerrar PreparedStatement",
-                        e);
+                logger.error("Error al cerrar PreparedStatement", e);
             }
         }
     }

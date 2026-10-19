@@ -22,7 +22,6 @@ public class Conexion {
                     "jdbc:postgresql://localhost:5432/tallerjdbc";
 
             String usuario = "postgres";
-
             String password = "luis2809";
 
             conexion = DriverManager.getConnection(

@@ -14,16 +14,14 @@ public class SelectVehiculo {
 
     public void listar() {
 
-        String sql =
-                "SELECT * FROM vehiculos";
+        String sql = "SELECT * FROM vehiculos";
 
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
 
-            ps = Conexion.getConexion()
-                    .prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
 
             rs = ps.executeQuery();
 
@@ -31,18 +29,20 @@ public class SelectVehiculo {
 
                 System.out.println(
                         rs.getString("placa")
-                                + " | "
-                                + rs.getString("marca")
-                                + " | "
-                                + rs.getString("modelo")
-                                + " | "
-                                + rs.getInt("anio")
-                                + " | "
-                                + rs.getDouble("precio")
-                                + " | "
-                                + rs.getString("color")
-                                + " | "
-                                + rs.getBoolean("disponible"));
+                        + " | "
+                        + rs.getString("marca")
+                        + " | "
+                        + rs.getString("modelo")
+                        + " | "
+                        + rs.getInt("anio")
+                        + " | "
+                        + rs.getDouble("precio")
+                        + " | "
+                        + rs.getString("color")
+                        + " | "
+                        + rs.getBoolean("disponible")
+                        + " | "
+                        + rs.getInt("kilometraje"));
             }
 
             logger.info("Consulta realizada");
@@ -66,9 +66,7 @@ public class SelectVehiculo {
 
             } catch (SQLException e) {
 
-                logger.error(
-                        "Error al cerrar recursos",
-                        e);
+                logger.error("Error al cerrar recursos", e);
             }
         }
     }
